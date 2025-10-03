@@ -1,0 +1,38 @@
+<%- include('layout', { body: (function(){ %>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Новости</h2>
+      <p><a class="btn btn-primary" href="/news">Все новости</a></p>
+
+      <h3>Изменения сегодня по каждому классу</h3>
+      <% if (classes && classes.length) { %>
+        <div class="list-group">
+          <% classes.forEach(c => { %>
+            <a href="/schedule/class/<%= c.id %>" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= c.name %></h5>
+              </div>
+              <% const ch = changes.filter(x => x.className === c.name); %>
+              <% if (ch.length) { %>
+                <% ch.forEach(item => { %>
+                  <p class="mb-1"><%= item.description %></p>
+                <% }); %>
+              <% } else { %>
+                <small class="text-muted">Изменений нет</small>
+              <% } %>
+            </a>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p>Нет данных о классах.</p>
+      <% } %>
+    </div>
+    <div class="col-md-4">
+      <h4>Быстрые ссылки</h4>
+      <ul class="list-group">
+        <li class="list-group-item"><a href="/news">Новости</a></li>
+        <li class="list-group-item"><a href="/schedule/class/1">Расписание</a></li>
+      </ul>
+    </div>
+  </div>
+<% }).call(this) }) %>

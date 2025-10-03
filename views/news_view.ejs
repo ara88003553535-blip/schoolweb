@@ -1,0 +1,30 @@
+<%- include('layout', { body: (function(){ %>
+  <h2><%= article.title %></h2>
+  <p class="text-muted">Автор: <%= article.authorName %> — <%= new Date(article.createdAt).toLocaleString() %></p>
+  <div class="mb-3"><%= article.body %></div>
+
+  <div class="mb-3">
+    <form method="post" action="/news/<%= article.id %>/like" style="display:inline-block;">
+      <input type="hidden" name="value" value="1" />
+      <button class="btn btn-outline-primary">Like (<%= likeCount %>)</button>
+    </form>
+    <form method="post" action="/news/<%= article.id %>/like" style="display:inline-block; margin-left:6px;">
+      <input type="hidden" name="value" value="-1" />
+      <button class="btn btn-outline-secondary">Dislike (<%= dislikeCount %>)</button>
+    </form>
+  </div>
+
+  <h4>Комментарии</h4>
+  <% comments.forEach(c => { %>
+    <div class="card mb-2"><div class="card-body"><strong><%= c.authorName %></strong> <small class="text-muted"><%= new Date(c.createdAt).toLocaleString() %></small><p><%= c.body %></p></div></div>
+  <% }) %>
+
+  <% if (user) { %>
+    <form method="post" action="/news/<%= article.id %>/comment">
+      <div class="mb-2"><textarea name="body" class="form-control" placeholder="Комментарий"></textarea></div>
+      <button class="btn btn-primary">Отправить</button>
+    </form>
+  <% } else { %>
+    <p>Войти чтобы комментировать.</p>
+  <% } %>
+<% }).call(this) }) %>

@@ -1,0 +1,21 @@
+<%- include('layout', { body: (function(){ %>
+  <h2>Админ-панель</h2>
+  <h3>Права доступа (permissions.json)</h3>
+  <form method="post" action="/admin/permissions">
+    <div class="mb-3">
+      <textarea name="content" class="form-control" rows="10"><%= JSON.stringify(permissions, null, 2) %></textarea>
+    </div>
+    <button class="btn btn-primary">Сохранить права</button>
+  </form>
+
+  <h3 class="mt-4">Новости</h3>
+  <% articles.forEach(a => { %>
+    <div class="card mb-2"><div class="card-body"><h5><%= a.title %></h5><p><%= a.body.slice(0,200) %></p></div></div>
+  <% }) %>
+
+  <h3 class="mt-4">Списки расписаний</h3>
+  <% schedules.forEach(s => { %>
+    <div class="card mb-2"><div class="card-body"><pre><%= s.ownerType %> / <%= s.ownerId %> — <%= s.data %></pre></div></div>
+  <% }) %>
+
+<% }).call(this) }) %>

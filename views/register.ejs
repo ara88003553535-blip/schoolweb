@@ -1,0 +1,14 @@
+<%- include('layout', { body: (function(){ %>
+  <h2>Регистрация</h2>
+  <% if (typeof error !== 'undefined') { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+  <form method="post" action="/register">
+    <div class="mb-3"><label class="form-label">Имя</label><input class="form-control" name="name" /></div>
+    <div class="mb-3"><label class="form-label">Email</label><input class="form-control" name="email" /></div>
+    <div class="mb-3"><label class="form-label">Пароль</label><input class="form-control" name="password" type="password" /></div>
+    <div class="mb-3"><label class="form-label">Роль</label><select name="role" class="form-select"><option value="student">Ученик</option><option value="parent">Родитель</option><option value="teacher">Учитель</option><option value="guest">Гость</option><option value="alumni">Бывший</option></select></div>
+    <div class="mb-3"><label class="form-label">Класс (ID, опционально)</label><input class="form-control" name="classId" /></div>
+    <button class="btn btn-primary">Зарегистрироваться</button>
+  </form>
+<% }).call(this) }) %>

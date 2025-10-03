@@ -1,0 +1,12 @@
+<%- include('layout', { body: (function(){ %>
+  <h2>Расписание — <%= owner %></h2>
+  <% if (schedule) { %>
+    <ul class="list-group">
+      <% schedule.forEach(item => { %>
+        <li class="list-group-item"><strong><%= item.time %></strong> — <%= item.subject %></li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>Расписание не задано.</p>
+  <% } %>
+<% }).call(this) }) %>

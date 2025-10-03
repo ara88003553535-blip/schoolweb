@@ -1,0 +1,10 @@
+{
+  "roles": {
+    "admin": ["edit_news", "edit_schedule", "edit_permissions"],
+    "teacher": ["edit_class_schedule"],
+    "student": [],
+    "parent": [],
+    "guest": [],
+    "alumni": []
+  }
+}
